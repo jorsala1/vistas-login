@@ -1,0 +1,28 @@
+
+    <div class="FondoCompleto">
+        <div class="card tamanioLogin">
+            <div class="card-body">
+               
+                <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()"  autocomplete="off">
+                    <img [src]="'assets/logo.png'" class="img"><img>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon> Username
+                        </mat-label>
+                    <input matInput formControlName="email" name="userName">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">fingerprint</mat-icon> Password
+                        </mat-label>
+                        <input matInput type="password" name="password" formControlName="password">
+                    </mat-form-field>
+    
+                        <button type="submit" class="btn btn-primary aling-center" style="width: 100%;"
+                            [disabled]="this.loginForm.invalid">Login</button>
+                    
+                </form>
+            </div>
+        </div>
+    </div>

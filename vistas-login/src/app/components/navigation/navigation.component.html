@@ -1,0 +1,37 @@
+<nav class="navbar navbar-dark bg-success navbar-expand-lg bg-body-tertiary fixed-top" style="padding: 1%;">
+    <div class="container-fluid">
+      <a class="navbar-brand" style="align-self: center; text-align: center;" href="menu/main-dashboard"> 
+        <img [src]="'assets/logo.png'" class="img2"><img>   </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <div class="icons-bar">   
+          <li class="nav-item">
+          <!--  <a class="nav-link active" aria-current="page" href="menu/main-dashboard">Home</a> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menu/users">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menu/main-dashboard">Reportes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menu/ruv">RUV</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menu/history">Histórico</a>
+          </li>
+          </div>
+        </ul>
+       <!-- <a class="navbar-brand" style="align-self: center; text-align: center;" href="menu/main-dashboard">  {{title}}  </a> -->
+      </div>
+    </div>
+    <div class="icons-bar">      
+      <a (click)="cerrarSesion()" style="color: white;"><mat-icon>exit_to_app</mat-icon></a>
+      
+  </div>
+  </nav>
+  <img [src]="'assets/logo.png'" class="img"><img>
+ 

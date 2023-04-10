@@ -1,0 +1,11 @@
+img {
+    width: auto;
+    height: auto;
+    max-height: 230px;
+    margin-left: 1%;
+    align-items: left;
+    align-content: left;
+    align-self: left;
+}
+
+

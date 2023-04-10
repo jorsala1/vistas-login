@@ -1,0 +1,112 @@
+<div style="width: 85vw !important; align-content: center !important;">
+
+    <h1>{{nombreArea}}</h1>
+    <h3>Reporte Actividades a Realizar</h3>
+    
+    
+    <div class="row">
+        <!--dropdown Rutas -->
+        <div *ngIf="loadingDropdownRutas" class="col-md-6">
+            <h4>Ruta Turística</h4>
+            <mat-form-field appearance="fill" style="width: 80%;">
+                <mat-label>Seleccione Ruta</mat-label>
+                <mat-select [value]="selectedRoute" (selectionChange)="onAreaSelect($event.value)">
+                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        {{selectedRoute}}
+        <!--dropdown Areas -->
+        <div *ngIf="loadingDropdownAreas2" class="col-md-6">
+            <h4>Área Protegida</h4>
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Seleccione Area Protegida</mat-label>
+                <mat-select [value]="selectedArea" (selectionChange)="onAreaSelect2($event.value); selectedArea = foods1[$event.value]">
+                    <mat-option *ngFor="let food of foods1" [value]="food.value">
+                        {{food.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <!--dropdown Año -->
+        <!-- <div class="col-md-4">
+            <h4>Año</h4>
+            <mat-form-field appearance="fill">
+                <mat-label>Seleccione Año</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>-->
+    </div>
+
+
+    <div class="row" style="width: 100%;" *ngIf=" datos && datos.length > 0 ">
+        <div class="col-md-6">
+            <table class=" table table-bordered" style="width: 100%; max-height: 300px;">
+                <thead class="thead-dark">
+                    <tr *ngIf=" datos && datos.length > 0">
+                        <th>Mes</th>
+                        <th *ngFor="let item2 of datos[0].data" class="">{{item2.genero}}</th>
+                        <th>Totales</th>
+                        <th>Totales (%)</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf=" datos && datos.length > 0">
+                    <tr *ngFor="let item of datos">
+                        <th scope="row">{{datosTotalesString3[item.mes - 1]}}</th>
+                        <td *ngFor="let item2 of item.data">{{item2.cantidad}}</td>
+                        <th>{{item.total}}</th>
+                        <th>{{item.porcentaje}} %</th>
+                    </tr>
+                    <tr></tr>
+                    <th scope="row">Totales</th>
+                    <th *ngFor="let item3 of datosNumericos">{{item3}}</th>
+
+                    <tr></tr>
+                    <th scope="row">Totales (%)</th>
+                    <th *ngFor="let item4 of datosNumericosPorcentaje">{{item4}} %</th>
+
+
+
+                </tbody>
+            </table>
+        </div>
+        <div  *ngIf="loadingPie" class="col-md-6" style="max-height: 260px; align-content: center  !important;">
+            <canvas baseChart class="chart" [data]="pieChartData" [type]="pieChartType" [options]="pieChartOptions"
+                style="max-height: 260px; ">
+            </canvas>
+
+
+
+        </div>
+
+        <br>
+        <br>
+        <div class="row" style="width: 100%; align-self: center; align-items: center; align-content: center;">
+            <div class="col-md-2"></div>
+            <div *ngIf="loadingDatos" class="col-md-8"
+                style="max-height: 280px; display: flex; justify-content: space-around; width: 100%  !important; align-self: center; align-items: center; align-content: center;">
+
+                <canvas baseChart class="chart" [data]="lineChartData" [options]="lineChartOptions"
+                    [type]="lineChartType"
+                    style="max-height: 280px; width: 100%; align-self: center; align-items: center; align-content: center;"></canvas>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </div>
+    <div class="row" style="width: 100%; padding-left: 10%;" *ngIf=" !datos || datos.length == 0">
+        <div class="alert alert-success" role="alert" style="margin-bottom: 0;">No se encontró ningún resultado.</div>
+    </div>
+
+</div>

@@ -1,0 +1,102 @@
+<div
+    style="width:  90vw !important; align-content: center !important ; align-items: center !important; align-self: center !important;">
+    <h1>{{nombreArea}}</h1>
+    <h3>Registro de visitas histórico</h3>
+    <br>
+    <br>
+
+    <div class="row">
+        <!--dropdown Rutas -->
+        <div *ngIf="loadingDropdownRutas" class="col-md-6">
+            <h4>Ruta Turística</h4>
+            <mat-form-field appearance="fill" style="width: 80%;">
+                <mat-label>Seleccione Ruta</mat-label>
+                <mat-select [value]="selectedRoute" (selectionChange)="onAreaSelect($event.value)">
+                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        {{selectedRoute}}
+        <!--dropdown Areas -->
+        <div *ngIf="loadingDropdownAreas2" class="col-md-6">
+            <h4>Área Protegida</h4>
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Seleccione Area Protegida</mat-label>
+                <mat-select [value]="selectedArea"
+                    (selectionChange)="onAreaSelect2($event.value); selectedArea = foods1[$event.value]">
+                    <mat-option *ngFor="let food of foods1" [value]="food.value">
+                        {{food.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <!--dropdown Año -->
+        <!-- <div class="col-md-4">
+            <h4>Año</h4>
+            <mat-form-field appearance="fill">
+                <mat-label>Seleccione Año</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>-->
+    </div>
+
+    <div class="row" style="width: 100%; align-content: center;" *ngIf=" datos && datos.length > 0 ">
+        <div class="table-responsive">
+            <table class="table table-hover" width="50">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha visita</th>
+                        <th scope="col">Nacionalidad</th>
+                        <th scope="col">País de residencia</th>
+                        <th scope="col">Departamento de residencia</th>
+                        <th scope="col">Género</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Motivo de visita</th>
+                        <th scope="col">Motivo de visita (otro)</th>
+                        <th scope="col">Actividades a realizar</th>
+                        <th scope="col">Actividades a realizar(otro)</th>
+                        <th scope="col">¿Cómo viaja?</th>
+                        <th scope="col">¿Cómo viaja? (otro)</th>
+                        <th scope="col">¿Cómo se enteró del área?</th>
+                        <th scope="col">¿Cómo se enteró del área? (Otro)</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf=" datos && datos.length > 0">
+                    <tr *ngFor="let item of datos | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <td>{{obtenerFecha(item.createdAt)}}</td>
+                        <td>{{item.nacionalidad}}</td>
+                        <td>{{item.paisResidencia}}</td>
+                        <td *ngIf="item.departamentoGuatema == 'null'"></td>
+                        <td *ngIf="item.departamentoGuatema != 'null'">{{item.departamentoGuatema}}</td>
+                        <td>{{item.genero}}</td>
+                        <td>{{item.edad}}</td>
+                        <td>{{item.motivoVisita}}</td>
+                        <td>{{item.motivoVisitaOtro}}</td>
+                        <td>{{item.ActividadesRealizar}}</td>
+                        <td>{{item.ActividadesRealizarOtro}}</td>
+                        <td>{{item.comoViaja}}</td>
+                        <td>{{item.comoViajaOtro}}</td>
+                        <td>{{item.conocimientoArea}}</td>
+                        <td>{{item.conocimientoAreaOtro}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+    <div class="row" style="width: 100%; padding-left: 10%;" *ngIf=" !datos || datos.length == 0">
+        <div class="alert alert-success" role="alert" style="margin-bottom: 0;">No se encontró ningún resultado.</div>
+    </div>
+
+</div>

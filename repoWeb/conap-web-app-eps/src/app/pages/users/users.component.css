@@ -1,0 +1,9 @@
+.ngx-pagination button {
+    background-color: green;
+    color: white;
+  }
+
+  .ngx-pagination span {
+    color: gray;
+    font-size: 14px;
+  }

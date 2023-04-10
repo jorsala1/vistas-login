@@ -1,0 +1,87 @@
+.FondoCompleto {
+    background: url("/assets/f2.jpg");
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    
+}
+
+img {
+    width: auto;
+    height: auto;
+    max-height: 230px;
+    margin-left: 15%;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+
+.registro {
+    font-size: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.tituloLogin {
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 20px;
+}
+
+.FondoCompleto .tamanioLogin {
+    border-radius: 10px;
+    box-shadow: 16px 18px 30px 0.5px;
+    min-height: 320px;
+    min-width: 359px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+    .card {
+        box-shadow: 3px 3px 25px 0.2px;
+    }
+
+    .tituloLogin {
+        color: cornflowerblue;
+    }
+
+}
+
+@media only screen and (max-width: 1266px) {
+    .card {
+        box-shadow: 3px 3px 25px 0.2px;
+    }
+
+    img {
+        width: auto;
+        height: 100px;
+        margin-left: 33%;
+    }
+
+    .FondoCompleto .tamanioLogin {
+        -webkit-filter: blur(0px);
+        -moz-filter: blur(0px);
+        -o-filter: blur(0px);
+        -ms-filter: blur(0px);
+        filter: blur(0px);
+        border-radius: 10px;
+        box-shadow: 16px 18px 30px 0.5px;
+    }
+}

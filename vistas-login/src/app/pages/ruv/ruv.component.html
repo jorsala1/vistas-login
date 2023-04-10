@@ -1,0 +1,174 @@
+<div class="FondoCompleto">
+
+    <div class="card tamanioLogin" style="padding-top: 17%;">
+        <div class="card-body">
+            <div class="row" >
+                <h1>Registro Unificado de Visitantes</h1>
+            </div>
+            <div class="row" >
+                <!--Rutas turisticas-->
+                <div *ngIf="loadingDropdownRutas" class="col-md-6">
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label>Seleccione Ruta</mat-label>
+                        <mat-select [value]="selectedRoute" (selectionChange)="onAreaSelect($event.value)">
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <!--Áreas Protegidas-->
+                <div *ngIf="loadingDropdownAreas2" class="col-md-6">
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label>Seleccione Área Protegida</mat-label>
+                        <mat-select [value]="selectedArea" (selectionChange)="onAreaSelect2($event.value)">
+                            <mat-option *ngFor="let food of foods1" [value]="food.value">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>                
+            </div>
+            
+
+            <form [formGroup]="ruvForm" (ngSubmit)="onSubmit()" autocomplete="off">
+               
+                <!--Pais residencia-->
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>
+                        Pais de Residencia
+                    </mat-label>
+                    <!--<input matInput  formControlName="paisResidencia" name="userName">-->
+                    <mat-select formControlName="paisResidencia">
+                        <mat-option *ngFor="let food of paises" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!--Departamento residencia-->
+                <mat-form-field *ngIf = "this.ruvForm.get('paisResidencia')?.value == 'Guatemala'" class="example-full-width" appearance="fill">
+                    <mat-label>
+                        Departamento de Residencia
+                    </mat-label>
+                    <!--<input matInput formControlName="departamentoResidencia" name="userName">-->
+                    <mat-select formControlName="departamentoResidencia">
+                        <mat-option *ngFor="let food of deptos" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br>
+                <!--nacionalidad-->
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>
+                         Nacionalidad
+                    </mat-label>
+                    <!--<input matInput  name="nacionalidad" formControlName="nacionalidad">-->
+                    <mat-select formControlName="nacionalidad">
+                        <mat-option *ngFor="let food of paises" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!--Genero-->
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Seleccione Género</mat-label>
+                    <mat-select formControlName="genero">
+                        <mat-option *ngFor="let food of data" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!--Edad-->
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Seleccione Rango de edad</mat-label>
+                    <mat-select formControlName="edad">
+                        <mat-option *ngFor="let food of data2" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+               
+                <!--Motivo de visita-->
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Seleccione Motivo de visita</mat-label>
+                    <mat-select formControlName="motivoVisita">
+                        <mat-option *ngFor="let food of data3" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field *ngIf = "this.ruvForm.get('motivoVisita')?.value == 'Otro'" class="example-full-width" appearance="fill">
+                    <mat-label>
+                        Motivo de visita (otro)
+                    </mat-label>
+                    <input matInput formControlName="motivoVisitaOtro" name="userName">
+                </mat-form-field>
+                <br>
+
+                <!--Actividades a Realizar-->
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Seleccione Actividad a realizar</mat-label>
+                    <mat-select formControlName="actividadesRealizar">
+                        <mat-option *ngFor="let food of data4" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field *ngIf = "this.ruvForm.get('actividadesRealizar')?.value == 'Otro'" class="example-full-width" appearance="fill">
+                    <mat-label>
+                        Actividad a realizar (otro)
+                    </mat-label>
+                    <input matInput formControlName="actividadesRealizarOtro" name="userName">
+                </mat-form-field>
+                <br>
+
+                <!--como se entero del area-->
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>¿Cómo se enteró del área?</mat-label>
+                    <mat-select formControlName="conocimientoArea">
+                        <mat-option *ngFor="let food of data5" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field *ngIf = "this.ruvForm.get('conocimientoArea')?.value == 'Otro'" class="example-full-width" appearance="fill">
+                    <mat-label>
+                        ¿Cómo se enteró? (otro)
+                    </mat-label>
+                    <input matInput formControlName="conocimientoAreaOtro" name="userName">
+                </mat-form-field>
+                <br>
+
+
+                <!--Como viaja-->
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>¿Cómo viaja?</mat-label>
+                    <mat-select formControlName="comoViaja">
+                        <mat-option *ngFor="let food of data6" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field *ngIf = "this.ruvForm.get('comoViaja')?.value == 'Otro'" class="example-full-width" appearance="fill">
+                    <mat-label>
+                        ¿Cómo viaja? (otro)
+                    </mat-label>
+                    <input matInput formControlName="comoViajaOtro" name="userName">
+                </mat-form-field>
+                <br>
+
+                <button type="submit" class="btn btn-success aling-center" style="width: 100%;"
+                    [disabled]="this.ruvForm.invalid">Registrar Visita</button>
+
+            </form>
+        </div>
+    </div>
+</div>

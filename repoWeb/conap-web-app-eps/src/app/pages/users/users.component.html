@@ -1,0 +1,105 @@
+<div style="width: 70vw !important; align-content: center !important ; padding-left: 26%;">
+
+    <h1>Usuarios Registrados</h1>
+    <mat-accordion>
+        <mat-expansion-panel #panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <b>Crear Nuevo Usuario</b>
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{panelOpenState ? 'Ingrese datos de usuario' : 'Presione para crear Nuevo Usuario'}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <form [formGroup]="ruvForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                <!--nacionalidad-->
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+                    <mat-label>
+                        Nacionalidad
+                    </mat-label>
+                    <!--<input matInput  name="nacionalidad" formControlName="nacionalidad">-->
+                    <mat-select formControlName="nacionalidad">
+                        <mat-option *ngFor="let food of paises" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!--Genero-->
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Seleccione Género</mat-label>
+                    <mat-select formControlName="genero">
+                        <mat-option *ngFor="let food of data" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!--email-->
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+                    <mat-label>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon> Username
+                    </mat-label>
+                    <input matInput formControlName="email" name="userName">
+                </mat-form-field>
+                <br>
+                <!--Edad-->
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+                    <mat-label>
+                        Nombre
+                    </mat-label>
+                    <input matInput formControlName="nombre" name="userName">
+                </mat-form-field>
+                <!--Password-->
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+                    <mat-label>
+                        Password
+                    </mat-label>
+                    <input matInput type="password" name="password" formControlName="password">
+                </mat-form-field>
+                <!--Edad-->
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+                    <mat-label>
+                        Edad
+                    </mat-label>
+                    <input matInput formControlName="edad" name="userName">
+                </mat-form-field>
+
+                <br>
+
+                <button type="submit" class="btn btn-success aling-center" style="width: 100%;"
+                    [disabled]="this.ruvForm.invalid">Crear Usuario</button>
+
+            </form>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+
+    <br>
+    <br>
+    <div class="row" style="width: 100%; align-content: center;">
+        <div class="md-col-9">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Rol</th>
+                        <!--<th scope="col">Acciones</th>-->
+                    </tr>
+                </thead>
+                <tbody *ngIf=" datos && datos.length > 0">
+                    <tr *ngFor="let item of datos | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.Role.roleDescription}}</td>
+                        <!-- <td><button type="button" class="btn btn-danger"
+                                (click)="eliminarUsuario(item.id, item.name.toString())">Eliminar</button></td>-->
+                    </tr>
+
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
